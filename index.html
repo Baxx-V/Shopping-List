@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>To-Do List</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <style>
+        li {
+            list-style-type: square;
+        }
+
+        body {
+            background-color: lightgreen;
+        }
+
+        .top {
+            background-color: darkseagreen;
+        }
+    </style>
+</head>
+
+<header class="top p-3 container-fluid flex-row justify-content-between d-flex flex-wrap">
+    <div>
+        <h3>Company name</h3>
+    </div>
+    <div>
+        <button class="btn btn-lg btn-success">SIGN IN</button>
+    </div>
+
+</header>
+
+<body>
+    <div class="container-fluid flex-wrap flex-row d-flex p-5">
+        <div class=" container-fluid flex-row d-flex  col-md-6 col-sm-12  pb-5" id="col1">
+            <div class="w-75">
+                <input type="text" id="item" placeholder="Enter your To-do List"
+                    class=" form-control w-100 p-4  border-success">
+            </div>
+            <div class="w-25">
+                <button onclick="list()" onkeypress="list()" id="enter" class="btn btn-lg btn-success w-100 ">Enter</button>
+            </div>
+        </div>
+        <div class=" text-success   col-md-6 col-sm-12" id="col2">
+            <h1>SHOPPING LIST</h1>
+            <h2>
+                <ul id="list">
+
+                </ul>
+            </h2>
+        </div>
+    </div>
+</body>
+<script>
+    
+    function list() {
+        var item = document.getElementById("item");
+        if (item.value.length > 0) {
+            var li = document.createElement("li");
+            var item = document.getElementById("item");
+            var input = document.createTextNode(item.value);
+            li.appendChild(input);
+            var ul = document.getElementById("list");
+            ul.appendChild(li);
+
+            var button = document.createElement("button");
+            var remove = document.createTextNode("Remove");
+            button.style.borderRadius = "5px";
+            button.style.backgroundColor = "green";
+            button.className = "btn btn-sm btn-danger";
+
+            button.appendChild(remove);
+            li.appendChild(button);
+            button.addEventListener("mouseover", function () {
+                button.style.backgroundColor = "red";
+                button.style.color = "white";
+
+            })
+            button.addEventListener("mouseout", function () {
+                button.style.backgroundColor = "green";
+                button.style.color = "red";
+
+            })
+
+            item.value = "";
+
+            button.addEventListener("click", function () {
+                li.style.display = "none";
+
+            })
+
+
+        } else {
+            console.log("good!!!")
+        }
+
+
+    }
+
+
+
+
+</script>
+
+</html>
